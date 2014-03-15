@@ -21,7 +21,7 @@ for iter = 1:num_iters
   for i = 1:m
     xi = X(i, :);
     hypothesis = xi * theta;
-    theta0_step += (hypothesis - y(i)) / m;
+    theta0_step += (hypothesis - y(i));
   end
 
   theta1_step = 0;
@@ -31,8 +31,8 @@ for iter = 1:num_iters
     theta1_step += (hypothesis - y(i)) * xi(2);
   end
 
-  new_theta0 = theta(1) - (alpha * theta0_step);
-  new_theta1 = theta(2) - (alpha * theta1_step);
+  new_theta0 = theta(1) - (alpha * theta0_step / m);
+  new_theta1 = theta(2) - (alpha * theta1_step / m);
 
   theta = [new_theta0; new_theta1];
 
