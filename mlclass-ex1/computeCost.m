@@ -14,8 +14,15 @@ J = 0;
 %               You should set J to the cost.
 
 
+sum = 0;
 
+for i = 1:m
+  xi = X(i);
+  hypothesis = theta(1) + theta(2) * xi;
+  sum += (hypothesis - y(i)) .^ 2;
+endfor
 
+J = sum / (2 * m);
 
 % =========================================================================
 
