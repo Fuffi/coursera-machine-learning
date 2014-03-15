@@ -13,12 +13,11 @@ J = 0;
 % Instructions: Compute the cost of a particular choice of theta
 %               You should set J to the cost.
 
-
 sum = 0;
 
 for i = 1:m
-  xi = X(i);
-  hypothesis = theta(1) + theta(2) * xi;
+  xi = X(i, :);
+  hypothesis = xi * theta;
   sum += (hypothesis - y(i)) .^ 2;
 endfor
 
