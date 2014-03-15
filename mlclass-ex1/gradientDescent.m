@@ -9,24 +9,37 @@ J_history = zeros(num_iters, 1);
 
 for iter = 1:num_iters
 
-    % ====================== YOUR CODE HERE ======================
-    % Instructions: Perform a single gradient step on the parameter vector
-    %               theta. 
-    %
-    % Hint: While debugging, it can be useful to print out the values
-    %       of the cost function (computeCost) and gradient here.
-    %
+  % ====================== YOUR CODE HERE ======================
+  % Instructions: Perform a single gradient step on the parameter vector
+  %               theta. 
+  %
+  % Hint: While debugging, it can be useful to print out the values
+  %       of the cost function (computeCost) and gradient here.
+  %
 
+  theta0_step = 0;
+  for i = 1:m
+    xi = X(i, :);
+    hypothesis = xi * theta;
+    theta0_step += (hypothesis - y(i)) / m;
+  end
 
+  theta1_step = 0;
+  for i = 1:m
+    xi = X(i, :);
+    hypothesis = xi * theta;
+    theta1_step += (hypothesis - y(i)) * xi(2);
+  end
 
+  new_theta0 = theta(1) - (alpha * theta0_step);
+  new_theta1 = theta(2) - (alpha * theta1_step);
 
+  theta = [new_theta0; new_theta1];
 
+  % ============================================================
 
-
-    % ============================================================
-
-    % Save the cost J in every iteration    
-    J_history(iter) = computeCost(X, y, theta);
+  % Save the cost J in every iteration    
+  J_history(iter) = computeCost(X, y, theta);
 
 end
 
