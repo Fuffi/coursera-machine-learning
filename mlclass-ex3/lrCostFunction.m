@@ -40,11 +40,11 @@ hypothesis = sigmoid(X * theta);
 unregularizedJ = (1/m) * sum(-y .* log(hypothesis) - (1 - y) .* log(1 - hypothesis));
 unregularizedGrad = (1/m) * sum((hypothesis - y) .* X);
 
-gradReg = theta .* (lambda / m)
-gradReg(1) = 0
+gradReg = theta .* (lambda / m);
+gradReg(1) = 0;
 
-J = unregularizedJ + (lambda / (2 * m)) * sumsq(theta(2:length(theta)))
-grad = unregularizedGrad + gradReg'
+J = unregularizedJ + (lambda / (2 * m)) * sumsq(theta(2:length(theta)));
+grad = unregularizedGrad + gradReg';
 
 
 
