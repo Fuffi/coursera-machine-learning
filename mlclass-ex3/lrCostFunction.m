@@ -38,7 +38,7 @@ grad = zeros(size(theta));
 
 hypothesis = sigmoid(X * theta);
 unregularizedJ = (1/m) * sum(-y .* log(hypothesis) - (1 - y) .* log(1 - hypothesis));
-unregularizedGrad = (1/m) * sum((hypothesis - y) .* X);
+unregularizedGrad = (1/m) * ((hypothesis - y)' * X);
 
 gradReg = theta .* (lambda / m);
 gradReg(1) = 0;
