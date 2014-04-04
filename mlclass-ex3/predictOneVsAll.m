@@ -31,11 +31,8 @@ X = [ones(m, 1) X];
 %
 
 predictions = sigmoid(X * all_theta');
-predictions = round(predictions);
 
-p = max(predictions, [], 2);
-
-
+[k, p] = max(predictions, [], 2);
 
 % =========================================================================
 
