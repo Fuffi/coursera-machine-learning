@@ -67,20 +67,20 @@ A = sigmoid(X * Theta1');
 A = [ones(m, 1) A];
 
 predictions = sigmoid(A * Theta2');
+y = [y==1 y==2 y==3 y==4 y==5 y==6 y==7 y==8 y==9 y==10];
 
 for i=1:m
-  value = y(i, :);
-  yi = zeros(num_labels, 1);
-  yi(value) = 1;
+  yi = y(i, :);
   hypothesis = predictions(i, :);
-  yi = yi;
 
-  J += 1/m * sum(-yi .* log(hypothesis') - (1 - yi) .* log(1 - hypothesis'));
+  J += 1/m * sum(-yi .* log(hypothesis) - (1 - yi) .* log(1 - hypothesis));
 end
 
 reg = (lambda / (2 * m)) * (sum(sumsq(Theta1(:, 2:end))) + sum(sumsq(Theta2(:, 2:end))));
 
 J += reg;
+
+delta_threes = predictions - y;
 
 % -------------------------------------------------------------
 
