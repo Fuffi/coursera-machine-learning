@@ -63,21 +63,25 @@ Theta2_grad = zeros(size(Theta2));
 %
 
 A1 = [ones(m, 1) X];
+
 Z2 = A1 * Theta1';
 A2 = [ones(m, 1) sigmoid(Z2)];
 
 Z3 = A2 * Theta2';
 A3 = sigmoid(Z3);
 
+training_set_y = [];
+for n=1:num_labels
+  training_set_y = [training_set_y n==y];
+end
+
 for i=1:m
-  value = y(i, :);
-  yi = zeros(1, num_labels);
-  yi(value) = 1;
+  yi = training_set_y(i, :);
   hypothesis = A3(i, :);
   J += 1/m * sum(-yi .* log(hypothesis) - (1 - yi) .* log(1 - hypothesis));
 end
 
-reg = (lambda / (2 * m)) * (sum(sumsq(Theta1(:, 2:end))) + sum(sumsq(Theta2(:, 2:end))));
+reg = (lambda / (2 * m)) * (sumsq(Theta1(:, 2:end)(:)) + sumsq(Theta2(:, 2:end)(:)));
 
 J += reg;
 
