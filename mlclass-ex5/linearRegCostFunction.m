@@ -21,6 +21,9 @@ grad = zeros(size(theta));
 
 hypothesis = X * theta;
 J = (1 / (2 * m)) * sumsq(hypothesis - y) + (lambda/ (2 * m)) * sumsq(theta(2:end));
+grad_reg = theta .* (lambda / m);
+grad_reg(1) = 0;
+grad = ((1/m) * (hypothesis - y)' * X) + grad_reg';
 
 
 
